@@ -9,6 +9,16 @@
     margin-top: 20px;
 }
 
+#github {
+    font-size: small;
+    color: gray;
+    text-decoration: none;
+}
+
+#github:hover {
+    text-decoration: underline;
+}
+
 #job {
     font-size: medium;
 }
