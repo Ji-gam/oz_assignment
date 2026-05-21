@@ -1,0 +1,19 @@
+#contents {
+    text-align: center;
+}
+
+#name {
+    font-size: x-large;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px;
+}
+
+#job {
+    font-size: medium;
+}
+
+#copyright {
+    font-size: x-small;
+    margin-top: 230px;
+}
