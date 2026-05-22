@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- GET -->
+    <form action="https://google.com/search">
+        <input type="search" name="q">
+        <button>검색</button>
+    </form>
+
+    <hr>
+
+
+    <!-- POST -->
+    <form action="https://httpbin.org/post" method="POST">
+        <label for="nameInput">이름: </label>
+        <input id="nameInput" type="text" required name="name">
+        <br>
+        <label for="emailInput">이메일: </label>
+        <input id="emailInput" type="email" required email="email">
+        <br>
+        <label for="passwordInput">비밀번호: </label>
+        <input id="passwordInput" type="password" required password="password">
+        <br>
+        <button>제출</button>
+    </form>
+
+</body>
+</html>
