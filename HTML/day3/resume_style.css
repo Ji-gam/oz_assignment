@@ -1,0 +1,267 @@
+/* 기본 리셋 및 폰트 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: #333333;
+    background-color: #f8f9fa; /* 미세한 회색 바탕 */
+}
+
+/* 전체 2단 레이아웃 구조 */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* 좌측 사이드바 */
+.sidebar {
+    width: 240px;
+    background-color: #2c2c2c;
+    padding: 40px 24px;
+    position: fixed; /* 스크롤해도 고정되도록 설정 */
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: #999999;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.nav-links li.active a,
+.nav-links li a:hover {
+    color: #ffffff;
+}
+
+/* 우측 메인 영역 */
+.main-content {
+    flex: 1;
+    margin-left: 240px; /* 사이드바 너비만큼 공백 확보 */
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 중앙 이력서 흰색 카드 */
+.resume-card {
+    width: 100%;
+    max-width: 860px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 50px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+}
+
+/* 프로필 헤더 */
+.profile-header {
+    display: flex; 
+    justify-content: space-between; /* 텍스트는 왼쪽 끝, 이미지는 오른쪽 끝 */
+    align-items: center;            /* 세로축 기준 중앙 정렬 */
+    padding-bottom: 30px;
+}
+
+.name {
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.contact-info {
+    display: flex;
+    gap: 16px;
+    font-size: 14px;
+    color: #666666;
+    flex-wrap: wrap;
+}
+
+/* 원형 프로필 이미지 placeholder */
+.profile-image .img-placeholder {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+}
+
+.profile-image .img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.header-divider {
+    border: none;
+    border-top: 2px solid #111111;
+    margin-bottom: 40px;
+}
+
+/* 섹션 타이틀 공통 (왼쪽 검은 두꺼운 선) */
+.resume-section {
+    margin-bottom: 45px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    border-left: 4px solid #111111;
+    padding-left: 12px;
+    margin-bottom: 24px;
+    line-height: 1;
+}
+
+.section-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444444;
+}
+
+/* 스킬 레이아웃 (배지 형태) */
+.skill-category {
+    margin-bottom: 18px;
+}
+
+.skill-category h3 {
+    font-size: 12px;
+    color: #888888;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background-color: #eff3f8;
+    color: #4a5568;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 경력 레이아웃 */
+.timeline-block {
+    margin-bottom: 28px;
+}
+
+.block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.company {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+.position {
+    font-size: 14px;
+    color: #777777;
+}
+
+.duration {
+    font-size: 14px;
+    color: #666666;
+}
+
+.block-content h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.block-content ul {
+    padding-left: 20px;
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+/* 학력, 수상 내역 정렬을 위한 2열 그리드 */
+.grid-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.grid-date {
+    color: #666666;
+}
+
+.grid-text {
+    font-weight: 500;
+}
+
+/* 폰트어썸 아이콘 사용을 위한 예시 임포트 (기존에 있다면 생략) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* 부모 컨테이너에 Flexbox 적용 */
+.profile-info {
+    display: flex; /* 가로로 배치하도록 활성화 */
+    justify-content: space-between; /* 텍스트는 왼쪽 끝, 사진은 오른쪽 끝으로 정렬 */
+    align-items: center; /* 세로 방향으로 중앙 정렬 */
+    padding: 20px 0; /* 여백 추가 */
+}
+
+/* 텍스트 그룹 스타일 (이름 아래 연락처 배치) */
+.profile-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.name {
+    margin: 0;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* 연락처 정보 간격 조정 */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-info span, .contact-info a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 아이콘과 텍스트 사이 간격 */
+}
+
+/* [중요] 프로필 사진 크기 고정 스타일 */
+.profile-pic {
+    width: 100px; /* 원하는 가로 크기 지정 */
+    height: 100px; /* 세로 크기 지정 */
+    object-fit: cover; /* 이미지가 찌그러지지 않게 조정 */
+    border-radius: 50%; /* 선택 사항: 사진을 원형으로 */
+    margin-left: 30px; /* 텍스트와 사진 사이 간격 확보 */
+}
