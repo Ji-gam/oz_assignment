@@ -1,5 +1,10 @@
+body {
+    margin: 10 px;
+}
+
 #contents {
     text-align: center;
+    display: flex;
 }
 
 #name {
@@ -26,4 +31,12 @@
 #copyright {
     font-size: x-small;
     margin-top: 230px;
+}
+
+#language-switch {
+    color: darkcyan;
+    font-size: small;
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
 }
