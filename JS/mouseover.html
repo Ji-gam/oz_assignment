@@ -11,18 +11,15 @@
     <script>
         const box = document.querySelector("#box");
 
-        function highlightText() {
-            box.style.color = "orange";
-            box.style.border = "1px solid red";
+        function chageTextColor(color) {
+            box.style.color = color;
+            box.style.border = "1px solid" + color;
         }
 
-        function clearhighlight() {
-            box.style.color = "black"
-            box.style.border = "1px solid black"
-        }
+        
 
-        box.addEventListener("mouseover", highlightText)
-        box.addEventListener("mouseout", clearhighlight)
+        box.addEventListener("mouseover", () => chageTextColor("orange"));
+        box.addEventListener("mouseout", () => chageTextColor("black"));
     </script>
 </body>
 </html>
