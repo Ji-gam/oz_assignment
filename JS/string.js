@@ -1,5 +1,3 @@
-// 문자 = Character
-
 let username = "alex";
 let message = 'hello';
 

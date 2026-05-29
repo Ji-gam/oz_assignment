@@ -1,4 +1,4 @@
-// Bollean(참/거짓)
+// Boolean(참/거짓): true / false
 
 let isStudent = true;
 let hasTicket = false;

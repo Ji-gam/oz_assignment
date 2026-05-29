@@ -3,4 +3,8 @@
 let firstName = "Alex";
 let lastName = "Kim";
 
-console.log(firstName + " " + lastName);
+console.log("Hello, " + firstName + " " + lastName);
+
+console.log("Hello" + 10);
+
+console.log("100" + 20);

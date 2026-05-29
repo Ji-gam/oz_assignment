@@ -1,1 +1,1 @@
-console.log("World!!!")
+console.print("World!!!")

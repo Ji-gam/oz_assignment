@@ -18,10 +18,10 @@
         const result = document.querySelector("#result");
 
         function printName() {
-            if (input.value === "") {
-                alert("이름을 입력하세요.");
+            if (input.value.trim() === "") {
+                alert("이름을 입력하세요");
                 return;
-            }
+            };
 
             result.innerHTML = "";
 
