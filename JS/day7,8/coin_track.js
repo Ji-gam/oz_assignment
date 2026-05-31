@@ -5,7 +5,8 @@ const state = {
     allTickerData: [],
     favorites: JSON.parse(localStorage.getItem('favorites')) || [],
     currentTab: 'all', // 'all' 또는 'favorites'
-    searchQuery: ''
+    searchQuery: '',
+    theme: localStorage.getItem('theme') || 'light' // 테마 상태 추가
 };
 
 // DOM 요소 캐싱
@@ -13,14 +14,12 @@ const cryptoTbody = document.getElementById('crypto-tbody');
 const searchInput = document.getElementById('search-input');
 const tabAll = document.getElementById('tab-all');
 const tabFav = document.getElementById('tab-fav');
-const themeToggle = document.getElementById('theme-toggle');
+const themeToggleBtn = document.getElementById('theme-toggle'); // 테마 토글 버튼 캐싱
 
 // 1. API 데이터 요청 함수
 async function fetchCryptoData() {
     try {
-        // 로컬 file:// 실행에서의 CORS 오류 및 418 IP 밴(차단)을 회피하기 위해 fetch 시점에만 프록시 적용!
-        const fetchUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(API_URL);
-        const response = await fetch(fetchUrl);
+        const response = await fetch(API_URL);
         if (!response.ok) throw new Error('네트워크 응답 안정성 확인 필요');
 
         const rawData = await response.json();
@@ -32,10 +31,6 @@ async function fetchCryptoData() {
         renderTable();
     } catch (error) {
         console.error('데이터 호출 실패:', error);
-        // 네트워크 에러 혹은 차단 시 테이블 내에 시각적인 에러 메시지 제공
-        if (state.allTickerData.length === 0) {
-            cryptoTbody.innerHTML = `<tr><td colspan="6" style="color: var(--color-positive); padding: 40px 0; font-weight: 600; line-height: 1.6;">데이터를 가져오는 데 실패했습니다.<br><span style="font-size: 13px; font-weight: normal; color: var(--text-muted);">임시로 네트워크 지연이 있거나 바이낸스 API 호출이 제한(Rate Limit)되었을 수 있습니다. 잠시 후 다시 시도합니다.</span></td></tr>`;
-        }
     }
 }
 
@@ -105,6 +100,17 @@ function renderTable() {
     });
 }
 
+// 테마 적용 함수
+function applyTheme() {
+    if (state.theme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggleBtn.textContent = '☀️';
+    } else {
+        document.body.classList.remove('dark');
+        themeToggleBtn.textContent = '🌙';
+    }
+}
+
 // 4. 이벤트 리스너 설정
 // 즐겨찾기 토글 (이벤트 위임 기법 적용)
 cryptoTbody.addEventListener('click', (e) => {
@@ -146,30 +152,14 @@ tabFav.addEventListener('click', () => {
     renderTable();
 });
 
-// 5. 초기 실행 및 3초 주기 타이머 실행 (과부하 및 API 차단 방지)
-cryptoTbody.innerHTML = `<tr><td colspan="6" style="color: var(--text-muted); padding: 40px 0;">실시간 데이터를 불러오는 중입니다...</td></tr>`;
-fetchCryptoData();
-setInterval(fetchCryptoData, 3000);
-
-// 6. 테마 전환 및 저장 로직 (다크 모드)
-function initTheme() {
-    // window.matchMedia 미지원 구형 브라우저 및 특수 환경에서의 스크립트 정지 차단
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-        themeToggle.textContent = '☀️';
-    } else {
-        document.body.classList.remove('dark');
-        themeToggle.textContent = '🌙';
-    }
-}
-
-themeToggle.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    themeToggle.textContent = isDark ? '☀️' : '🌙';
+// 테마 토글 버튼 클릭 이벤트
+themeToggleBtn.addEventListener('click', () => {
+    state.theme = state.theme === 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', state.theme);
+    applyTheme();
 });
 
-// 테마 초기화
-initTheme();
+// 5. 초기 실행 및 1초 주기 타이머 실행
+applyTheme(); // 초기 테마 적용
+fetchCryptoData();
+setInterval(fetchCryptoData, 1000);
