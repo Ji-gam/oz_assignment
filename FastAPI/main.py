@@ -1,3 +1,5 @@
+# $env:PYTHONUTF8=1; .venv\Scripts\fastapi dev
+
 from sqlalchemy.ext.asyncio import session
 from fastapi import FastAPI, Path, Query, HTTPException, Depends, Body
 from sqlalchemy import select
