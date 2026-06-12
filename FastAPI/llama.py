@@ -1,12 +1,12 @@
-# pyrefly: ignore [missing-import]
 from llama_cpp import Llama
+
 
 llm = Llama(
     model_path="./models/Llama-3.2-1B-Instruct-Q4_K_M.gguf",
-    n_ctx = 4096,
-    n_threads = 2,
-    verbose = False,
-    chat_format = "llama-3"
+    n_ctx=8192,
+    n_threads=2,
+    verbose=False,
+    chat_format="llama-3",
 )
 
 SYSTEM_PROMPT = (
@@ -16,15 +16,15 @@ SYSTEM_PROMPT = (
     "Do not mix languages."
 )
 
-
+# user_input = input("질문을 입력하세요: ")
 
 # result = llm.create_chat_completion(
-#     messages = [
-#         {"role": "system", "content": ""},
-#         {"role": "user", "content": ""},
+#     messages=[
+#         {"role": "system", "content": SYSTEM_PROMPT},
+#         {"role": "user", "content": user_input},
 #     ],
-#     max_tokens = 256,
-#     temperature = 0.7,
+#     max_tokens=256,
+#     temperature=0.7,
 # )
 
 # answer = result["choices"][0]["message"]["content"]
